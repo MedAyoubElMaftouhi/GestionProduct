@@ -15,11 +15,11 @@ public class ProduitService {
 
     // Create
     public void ajouterProduit(Produit produit) throws ProduitExistException, IllegalArgumentException {
-        verifierUniciteEtValidite(produit);
+        verify(produit);
         produits.put(produit.getId(), produit);
     }
 
-    private void verifierUniciteEtValidite(Produit nouveauProduit) throws ProduitExistException, IllegalArgumentException {
+    private void verify(Produit nouveauProduit) throws ProduitExistException, IllegalArgumentException {
         for (Produit existantProduit : produits.values()) {
             if (existantProduit.getId().equals(nouveauProduit.getId()) || existantProduit.getNom().equals(nouveauProduit.getNom())) {
                 throw new ProduitExistException("Un produit avec le même ID ou nom existe déjà.");
@@ -33,11 +33,11 @@ public class ProduitService {
     
     
     // Update
-    public void mettreAJourProduit(Produit produit) throws ProduitExistException {
+    public void updateProduct(Produit produit) throws ProduitExistException {
         if (!produits.containsKey(produit.getId())) {
             throw new NoSuchElementException("Produit non trouvé pour l'ID : " + produit.getId());
         }
-        verifierUniciteEtValidite(produit);
+        verify(produit);
         produits.put(produit.getId(), produit);
     }
 
