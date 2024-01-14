@@ -41,5 +41,10 @@ public class ProduitService {
         produits.put(produit.getId(), produit);
     }
 
+      // Delete
+    public void deleteProduct(Long id) {
+        produits.remove(id);
+    }
+
     
 }
