@@ -2,6 +2,7 @@ package ehei.ma.GestionProduct;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.NoSuchElementException;
 
 public class ProduitService {
 
@@ -29,4 +30,16 @@ public class ProduitService {
             throw new IllegalArgumentException("Le prix et la quantité doivent être positifs.");
         }
     }
+    
+    
+    // Update
+    public void mettreAJourProduit(Produit produit) throws ProduitExistException {
+        if (!produits.containsKey(produit.getId())) {
+            throw new NoSuchElementException("Produit non trouvé pour l'ID : " + produit.getId());
+        }
+        verifierUniciteEtValidite(produit);
+        produits.put(produit.getId(), produit);
+    }
+
+    
 }
